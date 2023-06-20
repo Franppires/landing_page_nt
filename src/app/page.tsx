@@ -1,6 +1,39 @@
-import Image from 'next/image';
+'use client'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Product from './components/product';
+
+interface ProductData {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  oldPrice: number;
+  image: string;
+  installments: { 
+    count: number
+    value: number
+  }
+}
 
 export default function Home() {
+  const [products, setProducts] = useState<ProductData[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get<ProductData[]>(
+        'https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=1'
+      );
+      setProducts(response.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main className=''>
       <div className='bg-custom-gradient w-full text-center pt-6'>
@@ -22,11 +55,22 @@ export default function Home() {
 
       <div className='flex flex-col md:flex-row justify-center gap-20 mx-10'>
         <div className='w-full md:w-1/2 '>
-          <h4 className='text-xl  mb-4'>Ajude o algorítimo a ser mais certeiro</h4>
-          <p className='mb-4'>Aproveite esta oportunidade para nos ajudar a aprimorar nosso algoritmo. Queremos torná-lo cada vez mais certeiro em suas buscas e recomendações. Compartilhe suas preferências, suas opiniões e sua experiência. Quanto mais informações você nos fornecer, melhor poderemos atender às suas necessidades.</p>
-          <p className='mb-4'>Nosso objetivo é fornecer a você uma experiência personalizada e eficiente. Junte-se a nós nessa jornada de aprimoramento contínuo e ajude-nos a oferecer resultados mais precisos e relevantes para você.</p>
-          {/* penso que poderia ser uma msg após cadastrar  */}
-          {/* <p className='mb-4'>Obrigado por fazer parte desta comunidade e por contribuir para o nosso sucesso!</p> */}
+          <h4 className='text-xl  mb-4'>
+            Ajude o algorítimo a ser mais certeiro
+          </h4>
+          <p className='mb-4'>
+            Aproveite esta oportunidade para nos ajudar a aprimorar nosso
+            algoritmo. Queremos torná-lo cada vez mais certeiro em suas buscas e
+            recomendações. Compartilhe suas preferências, suas opiniões e sua
+            experiência. Quanto mais informações você nos fornecer, melhor
+            poderemos atender às suas necessidades.
+          </p>
+          <p className='mb-4'>
+            Nosso objetivo é fornecer a você uma experiência personalizada e
+            eficiente. Junte-se a nós nessa jornada de aprimoramento contínuo e
+            ajude-nos a oferecer resultados mais precisos e relevantes para
+            você.
+          </p>
         </div>
         <div className='w-full md:w-1/2 mt-2'>
           <form action=''>
@@ -52,26 +96,48 @@ export default function Home() {
                 <label htmlFor='gender-female'>Feminino</label>
               </div>
             </div>
-            <button className='w-full h-10 bg-violet-800 ' type='submit'>Enviar</button>
+            <button className='w-full h-10 bg-violet-800 ' type='submit'>
+              Enviar
+            </button>
+            {/* <p className='mb-4'>Obrigado por fazer parte desta comunidade e por contribuir para o nosso sucesso!</p> */}
           </form>
         </div>
       </div>
-      <div>
-        <h4>Sua seleção especial</h4>
-        <div>
-          <img src='' alt='' />
-          <h5>Nome do produto</h5>
-          <p>
-            Descrição do produto um pouco maior, com duas linhas ou três que
-            explica melhor do que se trata.
-          </p>
-          <p>De: R$23,99</p>
-          <p>De: R$23,99</p>
-          <p>De: R$23,99</p>
-          <button>Comprar</button>
+      <div className='my-8'>
+        <div className='flex items-center justify-center'>
+          <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
+          <h4 className='text-lg font-bold mx-4'>Sua seleção especial</h4>
+          <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
         </div>
+        <div className='flex flex-wrap -mx-2'>
+          {/* <!-- Início do loop para exibir os produtos --> */}
+          {products.length > 0 ? (
+          <div className='flex flex-wrap -mx-2'>
+            {products.map((product) => (
+              <div key={product.id} className='w-1/4 px-2'>
+                <Product product={product} />
+              </div>
+            ))}
+          </div>
+          ) : (
+            <p className='w-full h-10 bg-violet-800 m-10'>Carregando produtos...</p>
+          )} 
+          {/* <!-- Fim do loop para exibir os produtos -->
+
+  <!-- Botão "Carregar Mais" --> */}
+          <button className='w-full h-10 bg-violet-800  m-10'>
+            Carregar Mais
+          </button>
+        </div>
+
+
+
         <div>
-          <h4>Compartilhe a novidade</h4>
+          <div className='flex items-center justify-center'>
+            <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
+            <h4 className='text-lg font-bold mx-4'>Compartilhe a novidade</h4>
+            <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
+          </div>
           <h5>
             Quer que seus amigos também ganhem a lista personalizada deles?
             Preencha agora!
