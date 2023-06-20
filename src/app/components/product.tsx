@@ -12,9 +12,12 @@ interface ProductProps {
       count: number
       value: number
     }
-
   }
 }
+
+const formatCurrency = (value) => {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+} 
 
 const Product: React.FC<ProductProps> = ({ product }) => { 
   return ( 
@@ -22,9 +25,9 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       <img src={product.image} alt="" className="bg-transparent mb-2"/>
       <h5 className='mb-2 font-bold'>{product.name}</h5>
       <p className='mb-2'>{product.description}</p>
-      <p className='text-sm mb-2'>De: R$ <span>{product.oldPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></p>
-      <p className='text-lg font-bold mb-2'>Por: R$ {product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-      <p className='text-base mb-2'>ou 2x de: R$ {product.installments.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+      <p className='text-sm mb-2'>De: R$ <span>{formatCurrency(product.oldPrice)}</span></p>
+      <p className='text-lg font-bold mb-2'>Por: R$ {formatCurrency(product.price)}</p>
+      <p className='text-base mb-2'>ou 2x de: R$ {formatCurrency(product.installments.value)}</p>
       <button className='w-full h-10 bg-violet-800 '>Comprar</button>
     </div>
   )
