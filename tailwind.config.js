@@ -11,7 +11,6 @@ module.exports = {
         'custom-gradient': 'linear-gradient(-190grad, #2e1065, #0000)',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'button': '#5b21b6'
       }), 
     },
     fontSize: {
