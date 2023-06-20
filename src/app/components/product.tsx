@@ -15,13 +15,13 @@ interface ProductProps {
   }
 }
 
-const formatCurrency = (value) => {
+const formatCurrency = (value: number) => {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 } 
 
 const Product: React.FC<ProductProps> = ({ product }) => { 
   return ( 
-    <div className="bg-transparent mx-10 my-5 ">
+    <div key={product.id} className="bg-transparent mx-10 my-5 ">
       <img src={product.image} alt="" className="bg-transparent mb-2"/>
       <h5 className='mb-2 font-bold'>{product.name}</h5>
       <p className='mb-2'>{product.description}</p>

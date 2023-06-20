@@ -16,8 +16,14 @@ interface ProductData {
   }
 }
 
+interface ApiResponse { 
+  nextPage: number;
+  products: ProductData[]
+}
+
 export default function Home() {
   const [products, setProducts] = useState<ProductData[]>([]);
+  const [nextPage, setNextPage] = useState<number>(1)
 
   useEffect(() => {
     fetchData();
@@ -25,15 +31,27 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get<ProductData[]>(
-        'https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=1'
+      const response = await axios.get<ApiResponse>(
+        `https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${nextPage}`
       );
       setProducts(response.data.products);
+      setNextPage(response.data.nextPage);
     } catch (error) {
       console.log(error);
     }
   };
-
+  
+  const handleLoadMore = async () => {
+    try {
+      const response = await axios.get<ApiResponse>(
+        `https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${nextPage}`
+      );
+      setProducts((prevProducts) => [...prevProducts, ...response.data.products]);
+      setNextPage(response.data.nextPage);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main className=''>
       <div className='bg-custom-gradient w-full text-center pt-6'>
@@ -123,11 +141,12 @@ export default function Home() {
             <p className='w-full h-10 bg-violet-800 m-10'>Carregando produtos...</p>
           )} 
           {/* <!-- Fim do loop para exibir os produtos -->
-
-  <!-- Botão "Carregar Mais" --> */}
-          <button className='w-full h-10 bg-violet-800  m-10'>
-            Carregar Mais
-          </button>
+          <!-- Botão "Carregar Mais" --> */}
+          {nextPage && (
+            <button className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded' onClick={handleLoadMore}>
+              Carregar Mais
+            </button>
+          )}
         </div>
 
 
