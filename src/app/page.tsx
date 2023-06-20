@@ -2,20 +2,23 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h2>uma seleção de produtos</h2>
-      <h1>especial para você</h1>
-      <h3>
-        Todos os produtos desta lista foram selecionados a partir da sua
-        navegação. Aproveite!
-      </h3>
-      <ul>
-        <li>Conheça a Linx</li>
-        <li>Ajude o algorítimo</li>
-        <li>Seus produtos</li>
-        <li>Compartilhe</li>
-      </ul>
+    <main className=''>
+      <div className='bg-custom-gradient w-full text-center pt-6'>
+        <h2 className='text-xl '>Uma seleção de produtos</h2>
+        <h1 className='text-4xl'>Especial para você</h1>
+        <h3 className='text-lg mt-4'>
+          Todos os produtos desta lista foram selecionados a partir da sua
+          navegação. Aproveite!
+        </h3>
+        <ul className='flex space-x-4 justify-center items-center'>
+          <li className='text-base bg-violet-800 p-2 my-8'>Conheça a Linx</li>
+          <li className='text-base bg-violet-800 p-2 my-8'>Ajude o algorítimo</li>
+          <li className='text-base bg-violet-800 p-2 my-8'>Seus produtos</li>
+          <li className='text-base bg-violet-800 p-2 my-8'>Compartilhe</li>
+        </ul>
 
+      </div>
+      
       <div>
         <div>
           <h4>Ajude o algorítimo a ser mais certeiro</h4>
