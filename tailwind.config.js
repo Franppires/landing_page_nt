@@ -11,6 +11,7 @@ module.exports = {
         'custom-gradient': 'linear-gradient(-190grad, #2e1065, #0000)',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'custom-gradient-reverse': 'linear-gradient(190deg, #0000, #2e1065)'
       }), 
     },
     fontSize: {
@@ -28,7 +29,8 @@ module.exports = {
       '8xl': '6rem',
       '9xl': '8rem',
     },
-  },
+  },   
+  variants: {},
   plugins: [],
 }
 

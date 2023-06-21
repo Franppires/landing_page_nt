@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Product from './components/product';
@@ -10,20 +10,20 @@ interface ProductData {
   price: number;
   oldPrice: number;
   image: string;
-  installments: { 
-    count: number
-    value: number
-  }
+  installments: {
+    count: number;
+    value: number;
+  };
 }
 
-interface ApiResponse { 
+interface ApiResponse {
   nextPage: number;
-  products: ProductData[]
+  products: ProductData[];
 }
 
 export default function Home() {
   const [products, setProducts] = useState<ProductData[]>([]);
-  const [nextPage, setNextPage] = useState<number>(1)
+  const [nextPage, setNextPage] = useState<number>(1);
 
   useEffect(() => {
     fetchData();
@@ -40,13 +40,16 @@ export default function Home() {
       console.log(error);
     }
   };
-  
+
   const handleLoadMore = async () => {
     try {
       const response = await axios.get<ApiResponse>(
         `https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${nextPage}`
       );
-      setProducts((prevProducts) => [...prevProducts, ...response.data.products]);
+      setProducts((prevProducts) => [
+        ...prevProducts,
+        ...response.data.products,
+      ]);
       setNextPage(response.data.nextPage);
     } catch (error) {
       console.log(error);
@@ -94,15 +97,15 @@ export default function Home() {
           <form action=''>
             <div className='flex flex-col mb-4'>
               <label htmlFor='name'>Seu nome:</label>
-              <input type='text' id='name' />
+              <input type='text' id='name' className='text-black' />
             </div>
             <div className='flex flex-col mb-4'>
               <label htmlFor='email'>E-mail:</label>
-              <input type='text' id='email' />
+              <input type='email' id='email' className='text-black' placeholder='exemplo@gmail.com'/>
             </div>
             <div className='flex flex-col mb-4'>
               <label htmlFor='cpf'>CPF:</label>
-              <input type='number' id='cpf' />
+              <input type='number' id='cpf' className='text-black' placeholder='000.000.000-00'/>
             </div>
             <div className='flex mb-4'>
               <div className='ml-2'>
@@ -127,56 +130,67 @@ export default function Home() {
           <h4 className='text-lg font-bold mx-4'>Sua seleção especial</h4>
           <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
         </div>
-        <div className='flex flex-wrap -mx-2'>
+        <div className='flex flex-wrap '>
           {/* <!-- Início do loop para exibir os produtos --> */}
           {products.length > 0 ? (
-          <div className='flex flex-wrap -mx-2'>
-            {products.map((product) => (
-              <div key={product.id} className='w-1/4 px-2'>
-                <Product product={product} />
-              </div>
-            ))}
-          </div>
+            <div className='flex flex-wrap'>
+              {products.map((product) => (
+                <div key={product.id} className='w-1/4 px-2'>
+                  <Product product={product} />
+                </div>
+              ))}
+            </div>
           ) : (
-            <p className='w-full h-10 bg-violet-800 m-10'>Carregando produtos...</p>
-          )} 
+            <p className='w-full h-10 bg-violet-800 m-10'>
+              Carregando produtos...
+            </p>
+          )}
           {/* <!-- Fim do loop para exibir os produtos -->
           <!-- Botão "Carregar Mais" --> */}
           {nextPage && (
-            <button className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded' onClick={handleLoadMore}>
+            <button
+              className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded'
+              onClick={handleLoadMore}
+            >
               Carregar Mais
             </button>
           )}
         </div>
-
-
-
         <div>
           <div className='flex items-center justify-center'>
             <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
             <h4 className='text-lg font-bold mx-4'>Compartilhe a novidade</h4>
             <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
           </div>
-          <h5>
+          <h5 className='flex items-center justify-center text-lg my-10'>
             Quer que seus amigos também ganhem a lista personalizada deles?
             Preencha agora!
           </h5>
-          <form action=''>
-            <div>
-              <label htmlFor=''>Nome do seu amigo:</label>
-              <input type='text' />
-            </div>
-            <div>
-              <label htmlFor=''>E-mail:</label>
-              <input type='text' />
-            </div>
-            <button>Enviar agora</button>
-          </form>
+          <div className='flex items-center justify-center '>
+            <form action='' className='mx-10 mt-2'>
+              <div className='flex gap-10'>
+                <div className='w-screen max-w-xs'>
+                  <label htmlFor=''>Nome do seu amigo:</label>
+                  <input type='text' className='w-full mt-4 text-black' />
+                </div>
+                <div className='w-screen max-w-xs'>
+                  <label htmlFor=''>E-mail:</label>
+                  <input type='text' className='w-full mt-4 text-black' placeholder='exemplo@gmail.com' />
+                </div>
+              </div>
+              <div className='flex justify-center mt-4'>
+                <button className='mt-4 px-6 py-3 bg-violet-800 text-white rounded'>
+                  Enviar agora
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 
-      <footer>
-        Testando suas habilidades em HTML, CSS e JS. Linx Impulse 2019
+      <footer className='bg-custom-gradient-reverse w-full text-center px-6 py-3'>
+        <p>Testando suas habilidades em HTML, CSS e JS.</p> 
+        <p>Linx Impulse 2019</p>
       </footer>
     </main>
   );
