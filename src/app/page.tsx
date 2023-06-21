@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Product from './components/product';
+import Link from 'next/link';
 
 interface ProductData {
   id: number;
@@ -58,25 +59,23 @@ export default function Home() {
   return (
     <main className=''>
       <div className='bg-custom-gradient w-full text-center pt-6'>
-        <h2 className='text-xl '>Uma seleção de produtos</h2>
+        <h2 className='text-xl' id='conheca-linx'>Uma seleção de produtos</h2>
         <h1 className='text-4xl'>Especial para você</h1>
         <h3 className='text-lg mt-4'>
           Todos os produtos desta lista foram selecionados a partir da sua
           navegação. Aproveite!
         </h3>
         <ul className='flex space-x-4 justify-center items-center'>
-          <li className='text-base bg-violet-800 p-2 my-8'>Conheça a Linx</li>
-          <li className='text-base bg-violet-800 p-2 my-8'>
-            Ajude o algorítimo
-          </li>
-          <li className='text-base bg-violet-800 p-2 my-8'>Seus produtos</li>
-          <li className='text-base bg-violet-800 p-2 my-8'>Compartilhe</li>
+          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#conheca-linx'>Conheça a Linx</Link></li>
+          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#ajude-algoritmo'>Ajude o algorítimo</Link></li>
+          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#seus-produtos'>Seus produtos</Link></li>
+          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#compartilhe'>Compartilhe</Link></li>
         </ul>
       </div>
 
       <div className='flex flex-col md:flex-row justify-center gap-20 mx-10'>
         <div className='w-full md:w-1/2 '>
-          <h4 className='text-xl  mb-4'>
+          <h4 className='text-xl  mb-4' id='ajude-algoritmo'>
             Ajude o algorítimo a ser mais certeiro
           </h4>
           <p className='mb-4'>
@@ -117,7 +116,7 @@ export default function Home() {
                 <label htmlFor='gender-female'>Feminino</label>
               </div>
             </div>
-            <button className='w-full h-10 bg-violet-800 ' type='submit'>
+            <button className='w-full h-10 bg-violet-800 cursor-pointer	' type='submit'>
               Enviar
             </button>
             {/* <p className='mb-4'>Obrigado por fazer parte desta comunidade e por contribuir para o nosso sucesso!</p> */}
@@ -127,7 +126,7 @@ export default function Home() {
       <div className='my-8'>
         <div className='flex items-center justify-center'>
           <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
-          <h4 className='text-lg font-bold mx-4'>Sua seleção especial</h4>
+          <h4 className='text-lg font-bold mx-4' id='seus-produtos'>Sua seleção especial</h4>
           <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
         </div>
         <div className='flex flex-wrap '>
@@ -149,7 +148,7 @@ export default function Home() {
           <!-- Botão "Carregar Mais" --> */}
           {nextPage && (
             <button
-              className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded'
+              className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded cursor-pointer	'
               onClick={handleLoadMore}
             >
               Carregar Mais
@@ -159,7 +158,7 @@ export default function Home() {
         <div>
           <div className='flex items-center justify-center'>
             <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
-            <h4 className='text-lg font-bold mx-4'>Compartilhe a novidade</h4>
+            <h4 className='text-lg font-bold mx-4'  id='compartilhe'>Compartilhe a novidade</h4>
             <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
           </div>
           <h5 className='flex items-center justify-center text-lg my-10'>
@@ -179,7 +178,7 @@ export default function Home() {
                 </div>
               </div>
               <div className='flex justify-center mt-4'>
-                <button className='mt-4 px-6 py-3 bg-violet-800 text-white rounded'>
+                <button className='mt-4 px-6 py-3 bg-violet-800 text-white rounded cursor-pointer	'>
                   Enviar agora
                 </button>
               </div>
@@ -189,8 +188,18 @@ export default function Home() {
       </div>
 
       <footer className='bg-custom-gradient-reverse w-full text-center px-6 py-3'>
-        <p>Testando suas habilidades em HTML, CSS e JS.</p> 
-        <p>Linx Impulse 2019</p>
+      <p>Linx Impulse © {new Date().getFullYear()}</p>
+        <p>
+          Developed by
+          {` `}
+          <Link
+            href='https://www.linkedin.com/in/franciane-pires/'
+            target='_blank'
+            className='hover:violet hover:bg-violet-800 hover:p-1'
+          >
+            Franciane Pires
+          </Link>
+        </p>
       </footer>
     </main>
   );
