@@ -19,7 +19,7 @@ const formatCurrency = (value: number) => {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 } 
 
-const Product: React.FC<ProductProps> = ({ product }) => { 
+export const Product: React.FC<ProductProps> = ({ product }) => { 
   return ( 
     <div key={product.id} className="bg-transparent mx-10 my-5 ">
       <img src={product.image} alt="" className="bg-transparent mb-2"/>
@@ -33,5 +33,3 @@ const Product: React.FC<ProductProps> = ({ product }) => {
   )
 
 }
-
-export default Product
