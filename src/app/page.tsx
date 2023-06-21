@@ -66,10 +66,10 @@ export default function Home() {
           navegação. Aproveite!
         </h3>
         <ul className='flex space-x-4 justify-center items-center'>
-          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#conheca-linx'>Conheça a Linx</Link></li>
-          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#ajude-algoritmo'>Ajude o algorítimo</Link></li>
-          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#seus-produtos'>Seus produtos</Link></li>
-          <li className='text-base bg-violet-800 p-2 my-8 cursor-pointer'><Link href='#compartilhe'>Compartilhe</Link></li>
+          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700 p-2 my-8 cursor-pointer rounded-lg'><Link href='#conheca-linx'>Conheça a Linx</Link></li>
+          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700 p-2 my-8 cursor-pointer rounded-lg'><Link href='#ajude-algoritmo'>Ajude o algorítimo</Link></li>
+          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700  p-2 my-8 cursor-pointer rounded-lg'><Link href='#seus-produtos'>Seus produtos</Link></li>
+          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700  p-2 my-8 cursor-pointer rounded-lg'><Link href='#compartilhe'>Compartilhe</Link></li>
         </ul>
       </div>
 
@@ -116,10 +116,9 @@ export default function Home() {
                 <label htmlFor='gender-female'>Feminino</label>
               </div>
             </div>
-            <button className='w-full h-10 bg-violet-800 cursor-pointer	' type='submit'>
+            <button className='w-full h-10 bg-violet-700 hover:bg-violet-900 active:bg-violet-700 cursor-pointer rounded-lg' type='submit'>
               Enviar
             </button>
-            {/* <p className='mb-4'>Obrigado por fazer parte desta comunidade e por contribuir para o nosso sucesso!</p> */}
           </form>
         </div>
       </div>
@@ -140,7 +139,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <p className='w-full h-10 bg-violet-800 m-10'>
+            <p className='w-full h-10 bg-violet-700 hover:bg-violet-900 active:bg-violet-700  m-10'>
               Carregando produtos...
             </p>
           )}
@@ -148,7 +147,7 @@ export default function Home() {
           <!-- Botão "Carregar Mais" --> */}
           {nextPage && (
             <button
-              className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-800 text-white rounded cursor-pointer	'
+              className='w-full text-center mt-4 m-10 px-6 py-3 bg-violet-700 hover:bg-violet-900 active:bg-violet-700 text-white rounded-lg cursor-pointer	'
               onClick={handleLoadMore}
             >
               Carregar Mais
@@ -178,7 +177,7 @@ export default function Home() {
                 </div>
               </div>
               <div className='flex justify-center mt-4'>
-                <button className='mt-4 px-6 py-3 bg-violet-800 text-white rounded cursor-pointer	'>
+                <button className='mt-4 px-6 py-3 bg-violet-700 hover:bg-violet-900 active:bg-violet-700  text-white rounded-lg cursor-pointer	'>
                   Enviar agora
                 </button>
               </div>
@@ -189,13 +188,10 @@ export default function Home() {
 
       <footer className='bg-custom-gradient-reverse w-full text-center px-6 py-3'>
       <p>Linx Impulse © {new Date().getFullYear()}</p>
-        <p>
-          Developed by
-          {` `}
-          <Link
+        <p> Developed by <Link
             href='https://www.linkedin.com/in/franciane-pires/'
             target='_blank'
-            className='hover:violet hover:bg-violet-800 hover:p-1'
+            className='hover:violet hover:bg-violet-700 hover:bg-violet-900 active:bg-violet-700 hover:rounded-lg hover:p-1'
           >
             Franciane Pires
           </Link>

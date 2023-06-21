@@ -28,7 +28,7 @@ const Product: React.FC<ProductProps> = ({ product }) => {
       <p className='text-sm mb-2'>De: R$ <span>{formatCurrency(product.oldPrice)}</span></p>
       <p className='text-lg font-bold mb-2'>Por: R$ {formatCurrency(product.price)}</p>
       <p className='text-base mb-2'>ou 2x de: R$ {formatCurrency(product.installments.value)}</p>
-      <button className='w-full h-10 bg-violet-800 '>Comprar</button>
+      <button className='w-full h-10 bg-violet-700 hover:bg-violet-900 active:bg-violet-700 rounded-lg'>Comprar</button>
     </div>
   )
 
