@@ -93,22 +93,22 @@ export default function Home() {
           </p>
         </div>
         <div className='w-full md:w-1/2 mt-2'>
-          <form action=''>
+          <form action='https://formspree.io/f/mayzrgja' method='POST'>
             <div className='flex flex-col mb-4'>
               <label htmlFor='name'>Seu nome:</label>
-              <input type='text' id='name' className='text-black' />
+              <input type='text' id='name' name='fullName' required className='text-black' />
             </div>
             <div className='flex flex-col mb-4'>
               <label htmlFor='email'>E-mail:</label>
-              <input type='email' id='email' className='text-black' placeholder='exemplo@gmail.com'/>
+              <input type='email' id='email' name='email' required className='text-black' placeholder='exemplo@gmail.com'/>
             </div>
             <div className='flex flex-col mb-4'>
               <label htmlFor='cpf'>CPF:</label>
-              <input type='number' id='cpf' className='text-black' placeholder='000.000.000-00'/>
+              <input type='number' id='cpf' name='cpf' required className='text-black' placeholder='000.000.000-00'/>
             </div>
             <div className='flex mb-4'>
               <div className='ml-2'>
-                <input type='radio' value='Masculino' name='gender' />
+                <input type='radio' value='Masculino' name='gender' required />
                 <label htmlFor='gender-male'>Masculino</label>
               </div>
               <div className='ml-2 '>
@@ -165,15 +165,15 @@ export default function Home() {
             Preencha agora!
           </h5>
           <div className='flex items-center justify-center '>
-            <form action='' className='mx-10 mt-2'>
+            <form action='https://formspree.io/f/xeqwybky' method='POST' className='mx-10 mt-2'>
               <div className='flex gap-10'>
                 <div className='w-screen max-w-xs'>
-                  <label htmlFor=''>Nome do seu amigo:</label>
-                  <input type='text' className='w-full mt-4 text-black' />
+                  <label htmlFor='friend-name'>Nome do seu amigo:</label>
+                  <input type='text' id='friend-name' name='friend-name' className='w-full mt-4 text-black' />
                 </div>
                 <div className='w-screen max-w-xs'>
-                  <label htmlFor=''>E-mail:</label>
-                  <input type='text' className='w-full mt-4 text-black' placeholder='exemplo@gmail.com' />
+                  <label htmlFor='email'>E-mail:</label>
+                  <input type='text' id='email' name='email' className='w-full mt-4 text-black' placeholder='exemplo@gmail.com' />
                 </div>
               </div>
               <div className='flex justify-center mt-4'>
