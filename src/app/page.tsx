@@ -1,8 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Product from './components/product';
-import Link from 'next/link';
+import Product from './components/Product';
+import { Header } from './components/Header';
+import { Form } from './components/Form';
+import { Footer } from './components/Footer';
+import { InvitationForm } from './components/InvitationForm';
+import { fetchProducts } from './api/api';
 
 interface ProductData {
   id: number;
@@ -17,11 +20,6 @@ interface ProductData {
   };
 }
 
-interface ApiResponse {
-  nextPage: number;
-  products: ProductData[];
-}
-
 export default function Home() {
   const [products, setProducts] = useState<ProductData[]>([]);
   const [nextPage, setNextPage] = useState<number>(1);
@@ -32,11 +30,9 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get<ApiResponse>(
-        `https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${nextPage}`
-      );
-      setProducts(response.data.products);
-      setNextPage(response.data.nextPage);
+      const response = await fetchProducts(nextPage);
+      setProducts(response.products);
+      setNextPage(response.nextPage);
     } catch (error) {
       console.log(error);
     }
@@ -44,92 +40,28 @@ export default function Home() {
 
   const handleLoadMore = async () => {
     try {
-      const response = await axios.get<ApiResponse>(
-        `https://frontend-intern-challenge-api.iurykrieger.vercel.app/products?page=${nextPage}`
-      );
-      setProducts((prevProducts) => [
-        ...prevProducts,
-        ...response.data.products,
-      ]);
-      setNextPage(response.data.nextPage);
+      const response = await fetchProducts(nextPage);
+      setProducts((prevProducts) => [...prevProducts, ...response.products]);
+      setNextPage(response.nextPage);
     } catch (error) {
       console.log(error);
     }
   };
-  return (
-    <main className=''>
-      <div className='bg-custom-gradient w-full text-center pt-6'>
-        <h2 className='text-xl' id='conheca-linx'>Uma seleção de produtos</h2>
-        <h1 className='text-4xl'>Especial para você</h1>
-        <h3 className='text-lg mt-4'>
-          Todos os produtos desta lista foram selecionados a partir da sua
-          navegação. Aproveite!
-        </h3>
-        <ul className='flex space-x-4 justify-center items-center'>
-          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700 p-2 my-8 cursor-pointer rounded-lg'><Link href='#conheca-linx'>Conheça a Linx</Link></li>
-          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700 p-2 my-8 cursor-pointer rounded-lg'><Link href='#ajude-algoritmo'>Ajude o algorítimo</Link></li>
-          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700  p-2 my-8 cursor-pointer rounded-lg'><Link href='#seus-produtos'>Seus produtos</Link></li>
-          <li className='text-base bg-violet-700 hover:bg-violet-900 active:bg-violet-700  p-2 my-8 cursor-pointer rounded-lg'><Link href='#compartilhe'>Compartilhe</Link></li>
-        </ul>
-      </div>
 
-      <div className='flex flex-col md:flex-row justify-center gap-20 mx-10'>
-        <div className='w-full md:w-1/2 '>
-          <h4 className='text-xl  mb-4' id='ajude-algoritmo'>
-            Ajude o algorítimo a ser mais certeiro
-          </h4>
-          <p className='mb-4'>
-            Aproveite esta oportunidade para nos ajudar a aprimorar nosso
-            algoritmo. Queremos torná-lo cada vez mais certeiro em suas buscas e
-            recomendações. Compartilhe suas preferências, suas opiniões e sua
-            experiência. Quanto mais informações você nos fornecer, melhor
-            poderemos atender às suas necessidades.
-          </p>
-          <p className='mb-4'>
-            Nosso objetivo é fornecer a você uma experiência personalizada e
-            eficiente. Junte-se a nós nessa jornada de aprimoramento contínuo e
-            ajude-nos a oferecer resultados mais precisos e relevantes para
-            você.
-          </p>
-        </div>
-        <div className='w-full md:w-1/2 mt-2'>
-          <form action='https://formspree.io/f/mayzrgja' method='POST'>
-            <div className='flex flex-col mb-4'>
-              <label htmlFor='name'>Seu nome:</label>
-              <input type='text' id='name' name='fullName' required className='text-black' />
-            </div>
-            <div className='flex flex-col mb-4'>
-              <label htmlFor='email'>E-mail:</label>
-              <input type='email' id='email' name='email' required className='text-black' placeholder='exemplo@gmail.com'/>
-            </div>
-            <div className='flex flex-col mb-4'>
-              <label htmlFor='cpf'>CPF:</label>
-              <input type='number' id='cpf' name='cpf' required className='text-black' placeholder='000.000.000-00'/>
-            </div>
-            <div className='flex mb-4'>
-              <div className='ml-2'>
-                <input type='radio' value='Masculino' name='gender' required />
-                <label htmlFor='gender-male'>Masculino</label>
-              </div>
-              <div className='ml-2 '>
-                <input type='radio' value='Feminino' name='gender' />
-                <label htmlFor='gender-female'>Feminino</label>
-              </div>
-            </div>
-            <button className='w-full h-10 bg-violet-700 hover:bg-violet-900 active:bg-violet-700 cursor-pointer rounded-lg' type='submit'>
-              Enviar
-            </button>
-          </form>
-        </div>
-      </div>
+  return (
+    <>
+      <Header />
+      <Form />
       <div className='my-8'>
         <div className='flex items-center justify-center'>
           <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
-          <h4 className='text-lg font-bold mx-4' id='seus-produtos'>Sua seleção especial</h4>
+          <h4 className='text-lg font-bold mx-4' id='seus-produtos'>
+            Sua seleção especial
+          </h4>
           <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
         </div>
         <div className='flex flex-wrap '>
-          {/* <!-- Início do loop para exibir os produtos --> */}
+          {/* <!-- Início do loop para exibir os produtos -->  */}
           {products.length > 0 ? (
             <div className='flex flex-wrap'>
               {products.map((product) => (
@@ -154,49 +86,9 @@ export default function Home() {
             </button>
           )}
         </div>
-        <div>
-          <div className='flex items-center justify-center'>
-            <div className='flex-grow border-t-2 border-gray-300 ml-10'></div>
-            <h4 className='text-lg font-bold mx-4'  id='compartilhe'>Compartilhe a novidade</h4>
-            <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
-          </div>
-          <h5 className='flex items-center justify-center text-lg my-10'>
-            Quer que seus amigos também ganhem a lista personalizada deles?
-            Preencha agora!
-          </h5>
-          <div className='flex items-center justify-center '>
-            <form action='https://formspree.io/f/xeqwybky' method='POST' className='mx-10 mt-2'>
-              <div className='flex gap-10'>
-                <div className='w-screen max-w-xs'>
-                  <label htmlFor='friend-name'>Nome do seu amigo:</label>
-                  <input type='text' id='friend-name' name='friend-name' className='w-full mt-4 text-black' />
-                </div>
-                <div className='w-screen max-w-xs'>
-                  <label htmlFor='email'>E-mail:</label>
-                  <input type='text' id='email' name='email' className='w-full mt-4 text-black' placeholder='exemplo@gmail.com' />
-                </div>
-              </div>
-              <div className='flex justify-center mt-4'>
-                <button className='mt-4 px-6 py-3 bg-violet-700 hover:bg-violet-900 active:bg-violet-700  text-white rounded-lg cursor-pointer	'>
-                  Enviar agora
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
       </div>
-
-      <footer className='bg-custom-gradient-reverse w-full text-center px-6 py-3'>
-      <p>Linx Impulse © {new Date().getFullYear()}</p>
-        <p> Developed by <Link
-            href='https://www.linkedin.com/in/franciane-pires/'
-            target='_blank'
-            className='hover:violet hover:bg-violet-700 hover:bg-violet-900 active:bg-violet-700 hover:rounded-lg hover:p-1'
-          >
-            Franciane Pires
-          </Link>
-        </p>
-      </footer>
-    </main>
+      <InvitationForm />
+      <Footer />
+    </>
   );
 }
