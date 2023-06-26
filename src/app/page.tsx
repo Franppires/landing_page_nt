@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
-import { Form } from './components/Form';
+import { Form } from './Form';
 import { Footer } from './components/Footer';
-import { InvitationForm } from './components/InvitationForm';
 import { fetchProducts } from './api/api';
-import { Product } from './components/Product';
+import { Product } from './Product';
+import { InvitationForm } from './InvitationForm';
 
 interface ProductData {
   id: number;

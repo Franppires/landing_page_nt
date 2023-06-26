@@ -1,7 +1,6 @@
 import React from 'react';
 import { Product } from './Product';
 
-
 interface ProductData {
   id: number;
   name: string;
