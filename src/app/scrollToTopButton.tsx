@@ -30,7 +30,10 @@ const ScrollToTopButton: React.FC = () => {
         className={`fixed right-4 bottom-4 p-3 bg-violet-800 rounded-full shadow-lg ${isVisible ? 'visible' : 'invisible'}`}
         onClick={scrollToTop}
       >
-        <FaArrowUp className="text-white" />
+        <div className="flex items-center justify-center">
+          <FaArrowUp className="text-white" />
+        </div>
+        <span className="text-white">Topo</span>
       </button>
     </>
     
