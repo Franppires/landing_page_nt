@@ -21,7 +21,7 @@ export const Form: React.FC = () => {
         </p>
       </div>
 
-      <div className='w-full md:w-1/2 mt-2'>
+      <div className='w-full md:w-1/2 mt-2 sm:mt-0'>
         <form action='https://formspree.io/f/mayzrgja' method='POST'>
           <div className='flex flex-col mb-4'>
             <label htmlFor='name'>Seu nome:</label>

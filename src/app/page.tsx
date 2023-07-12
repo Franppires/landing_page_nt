@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Form } from './Form';
@@ -61,11 +62,11 @@ export default function Home() {
           <div className='flex-grow border-t-2 border-gray-300 mr-10'></div>
         </div>
         <div className='flex flex-wrap '>
-          {/* <!-- Início do loop para exibir os produtos -->  */}
+          {/* <!-- Início do loop para exibir os produtos --> */}
           {products.length > 0 ? (
             <div className='flex flex-wrap'>
               {products.map((product) => (
-                <div key={product.id} className='w-1/4 px-2'>
+                <div key={product.id} className='w-1/2 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4 px-2'>
                   <Product product={product} />
                 </div>
               ))}
