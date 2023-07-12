@@ -1,4 +1,5 @@
-'use client' 
+'use client';
+
 import { useEffect, useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 
@@ -26,11 +27,14 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <> 
-      <button 
+      <button
         className={`fixed right-4 bottom-4 p-3 bg-violet-800 rounded-full shadow-lg ${isVisible ? 'visible' : 'invisible'}`}
         onClick={scrollToTop}
       >
-        <FaArrowUp className="text-white" />
+        <div className="flex items-center justify-center text-white">
+          <FaArrowUp />
+        </div>
+        <span className="text-sm text-white">Topo</span>
       </button>
     </>
     

@@ -53,15 +53,27 @@ export const Form: React.FC = () => {
               required
               className='text-black'
               placeholder='000.000.000-00'
+              maxLength={11}
             />
           </div>
           <div className='flex mb-4'>
             <div className='ml-2'>
-              <input type='radio' value='Masculino' name='gender' required />
+            <input
+              type='radio'
+              value='Masculino'
+              id='gender-male'
+              name='gender'
+              required
+            />
               <label htmlFor='gender-male'>Masculino</label>
             </div>
             <div className='ml-2 '>
-              <input type='radio' value='Feminino' name='gender' />
+              <input 
+                type='radio'
+                value='Feminino'
+                id='gender-female'
+                name='gender'
+              />
               <label htmlFor='gender-female'>Feminino</label>
             </div>
           </div>
