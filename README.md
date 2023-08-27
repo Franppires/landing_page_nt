@@ -1,34 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Desenvolvimento de Landing Page com Grade de Produtos e Formulário de Newsletter
 
-## Getting Started
+🚀 Participei ativamente do desenvolvimento de uma landing page, seguindo o layout fornecido, que inclui uma grade de produtos e um formulário de newsletter.
 
-First, run the development server:
+🎨 O layout foi cuidadosamente implementado, mantendo as proporções e espaçamentos conforme indicado no mock. O estilo da página foi reproduzido com precisão para garantir a fidelidade ao design original.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+📦 Utilizando o endpoint da API fornecido (https://frontend-intern-challenge-api.iurykrieger.now.sh/products?page=1), desenvolvi a lógica necessária para preencher a página com informações dos produtos de forma paginada.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🛍️ Cada produto retornado pela API foi transformado em um card de produto na grade, exibindo todas as informações relevantes, incluindo imagem, nome e preço.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔄 Implementei a funcionalidade de carregar mais produtos ao clicar no botão "Ainda mais produtos aqui!", utilizando a API paginada para buscar a próxima página de produtos e adicionar mais 8 produtos à grade.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+📬 O formulário de newsletter, intitulado "Compartilhe a novidade", foi desenvolvido com validações de entrada. Garanti que os campos, como o de email, fossem validados corretamente de acordo com o conteúdo esperado.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+🌐 O projeto final resultou em uma landing page interativa, que permite aos usuários explorar produtos e se inscrever na newsletter de forma fácil e agradável.
